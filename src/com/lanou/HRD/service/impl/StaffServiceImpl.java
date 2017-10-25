@@ -12,7 +12,7 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public boolean login(String name, String pwd) {
-        return staffDao;
+        return staffDao.login(name,pwd);
     }
 
     public StaffDao getStaffDao() {

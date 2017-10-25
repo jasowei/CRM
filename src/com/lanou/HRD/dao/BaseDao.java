@@ -32,4 +32,19 @@ public interface BaseDao<T> {
      */
     T findById(Serializable id, Class<T> tClass);
 
+    /**
+     * 添加
+     */
+    void add(T t);
+
+    /**
+     * 删除
+     */
+    void delete(Serializable id,Class<T> tClass);
+    /**
+     * 修改
+     */
+    void update(T t);
+
+
 }

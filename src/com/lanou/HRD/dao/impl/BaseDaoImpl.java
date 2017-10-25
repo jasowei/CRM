@@ -5,6 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,28 +14,22 @@ import java.util.Map;
 /**
  * Created by dllo on 17/10/24.
  */
-public class BaseDaoImpl<T> implements BaseDao<T> {
-
-    private static SessionFactory sessionFactory;
-
+public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 
 
     @Override
     public List<T> findAll(String hql) {
-        Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
+        Session session = currentSession();
 
         Query query = session.createQuery(hql);
         List<T> list = query.list();
 
-        transaction.commit();
         return list;
     }
 
     @Override
     public List<T> find(String hql, Map<String, Object> params) {
-        Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
+        Session session = currentSession();
 
         //执行查询语句
         Query query = session.createQuery(hql);
@@ -48,7 +43,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         }
         List<T> list = query.list();
 
-        transaction.commit();
         return list;//返回查询结果
     }
 
@@ -63,19 +57,25 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @Override
     public T findById(Serializable id, Class<T> tClass) {
-        Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
+        Session session = currentSession();
         //根据主键id查询某个对象
         T t = (T) session.get(tClass,id);
-        transaction.commit();
         return t;
     }
 
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
+    @Override
+    public void add(T t) {
+        getHibernateTemplate().save(t);
     }
 
-    public static void setSessionFactory(SessionFactory sessionFactory) {
-        BaseDaoImpl.sessionFactory = sessionFactory;
+    @Override
+    public void delete(Serializable id, Class<T> tClass) {
+        getHibernateTemplate().delete(findById(id,tClass));
     }
+
+    @Override
+    public void update(T t) {
+        getHibernateTemplate().update(t);
+    }
+
 }

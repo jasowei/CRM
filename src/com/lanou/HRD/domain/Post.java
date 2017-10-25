@@ -7,6 +7,8 @@ public class Post {
     private String postId;//主键id
     private String postName;//职务名称
 
+    private Department department;//职务所属部门
+
     public Post(String postName) {
         this.postName = postName;
     }
@@ -15,8 +17,13 @@ public class Post {
 
     }
 
-    public Post(String postId, String postName) {
+    public Post(String postId, String postName, Department department) {
+        this.postId = postId;
+        this.postName = postName;
+        this.department = department;
+    }
 
+    public Post(String postId, String postName) {
         this.postId = postId;
         this.postName = postName;
     }
@@ -27,6 +34,14 @@ public class Post {
                 "postId='" + postId + '\'' +
                 ", postName='" + postName + '\'' +
                 '}';
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public String getPostId() {

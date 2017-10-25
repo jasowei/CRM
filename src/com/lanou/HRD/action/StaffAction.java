@@ -16,7 +16,7 @@ public class StaffAction extends ActionSupport implements ModelDriven<Staff>{
     private Staff staff;
 
     @Autowired
-    @Qualifier("userService")
+    @Qualifier("staffService")
     private StaffService staffService;
 
     /**
@@ -24,7 +24,11 @@ public class StaffAction extends ActionSupport implements ModelDriven<Staff>{
      * @return
      */
     public String login(){
-        if (staffService.)
+//        if (staffService.login(staff.getLoginName(),staff.getLoginPwd())){
+//            return SUCCESS;
+//        }
+//        addActionError("用户名或密码错误!");
+        return SUCCESS;
 
     }
 
