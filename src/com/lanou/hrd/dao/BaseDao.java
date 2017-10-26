@@ -1,4 +1,4 @@
-package com.lanou.HRD.dao;
+package com.lanou.hrd.dao;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,6 +18,7 @@ public interface BaseDao<T> {
      * 根据条件查询, 返回查询到的结果集
      */
     List<T> find(String hql, Map<String,Object> params);
+    List<T> find(String hql,Object[] params);
 
     /**
      * 根据条件查询, 返回第一个对象

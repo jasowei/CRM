@@ -1,7 +1,7 @@
-package com.lanou.HRD.dao.impl;
+package com.lanou.hrd.dao.impl;
 
-import com.lanou.HRD.dao.PostDao;
-import com.lanou.HRD.domain.Post;
+import com.lanou.hrd.dao.PostDao;
+import com.lanou.hrd.domain.Post;
 
 /**
  * Created by dllo on 17/10/25.

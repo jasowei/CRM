@@ -1,9 +1,8 @@
-package com.lanou.HRD.service;
+package com.lanou.hrd.service;
 
-import com.lanou.HRD.domain.Department;
+import com.lanou.hrd.domain.Department;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by dllo on 17/10/25.

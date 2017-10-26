@@ -1,8 +1,8 @@
-package com.lanou.HRD.service.impl;
+package com.lanou.hrd.service.impl;
 
-import com.lanou.HRD.dao.PostDao;
-import com.lanou.HRD.domain.Post;
-import com.lanou.HRD.service.PostService;
+import com.lanou.hrd.dao.PostDao;
+import com.lanou.hrd.domain.Post;
+import com.lanou.hrd.service.PostService;
 
 import java.util.HashMap;
 import java.util.List;

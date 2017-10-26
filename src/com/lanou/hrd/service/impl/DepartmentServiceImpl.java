@@ -1,9 +1,8 @@
-package com.lanou.HRD.service.impl;
+package com.lanou.hrd.service.impl;
 
-import com.lanou.HRD.dao.DepartmentDao;
-import com.lanou.HRD.dao.impl.DepartmentDaoImpl;
-import com.lanou.HRD.domain.Department;
-import com.lanou.HRD.service.DepartmentService;
+import com.lanou.hrd.dao.DepartmentDao;
+import com.lanou.hrd.domain.Department;
+import com.lanou.hrd.service.DepartmentService;
 
 import java.util.HashMap;
 import java.util.List;

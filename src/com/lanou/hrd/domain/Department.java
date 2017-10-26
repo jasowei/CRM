@@ -1,4 +1,4 @@
-package com.lanou.HRD.domain;
+package com.lanou.hrd.domain;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,7 +39,6 @@ public class Department {
         return "Department{" +
                 "depID='" + depID + '\'' +
                 ", depName='" + depName + '\'' +
-                ", posts=" + posts +
                 '}';
     }
 

@@ -1,6 +1,6 @@
-package com.lanou.HRD.dao;
+package com.lanou.hrd.dao;
 
-import com.lanou.HRD.domain.Staff;
+import com.lanou.hrd.domain.Staff;
 
 /**
  * Created by dllo on 17/10/25.

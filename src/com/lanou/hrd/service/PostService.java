@@ -1,6 +1,6 @@
-package com.lanou.HRD.service;
+package com.lanou.hrd.service;
 
-import com.lanou.HRD.domain.Post;
+import com.lanou.hrd.domain.Post;
 
 import java.util.List;
 

@@ -60,7 +60,7 @@
     <!--5.配置Spring  aop-->
     <aop:config>
         <!--配置切入点-->
-        <aop:pointcut id="pointcut" expression="execution(* com.lanou.HRD.service.impl.*.*(..))"/>
+        <aop:pointcut id="pointcut" expression="execution(* com.lanou.hrd.service.impl.*.*(..))"/>
         <!--配置通知-->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
     </aop:config>
@@ -69,29 +69,29 @@
     <!--配置dao层-->
 
     <bean id="staffDao"
-          class="com.lanou.HRD.dao.impl.StaffDaoImpl">
+          class="com.lanou.hrd.dao.impl.StaffDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="departmentDao"
-          class="com.lanou.HRD.dao.impl.DepartmentDaoImpl">
+          class="com.lanou.hrd.dao.impl.DepartmentDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="postDao"
-          class="com.lanou.HRD.dao.impl.PostDaoImpl">
+          class="com.lanou.hrd.dao.impl.PostDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <!--配置service层-->
     <bean id="staffService"
-          class="com.lanou.HRD.service.impl.StaffServiceImpl">
+          class="com.lanou.hrd.service.impl.StaffServiceImpl">
         <property name="staffDao" ref="staffDao"/>
     </bean>
     <bean id="departmentService"
-          class="com.lanou.HRD.service.impl.DepartmentServiceImpl">
+          class="com.lanou.hrd.service.impl.DepartmentServiceImpl">
         <property name="departmentDao" ref="departmentDao"/>
     </bean>
     <bean id="postService"
-          class="com.lanou.HRD.service.impl.PostServiceImpl">
+          class="com.lanou.hrd.service.impl.PostServiceImpl">
         <property name="postDao" ref="postDao"/>
     </bean>
 

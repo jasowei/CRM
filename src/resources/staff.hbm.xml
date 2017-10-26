@@ -2,7 +2,7 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
         <hibernate-mapping>
-    <class name="com.lanou.HRD.domain.Staff" table="crm_staff">
+    <class name="com.lanou.hrd.domain.Staff" table="crm_staff">
 
         <id name="staffId">
             <generator class="uuid"/>
@@ -16,14 +16,11 @@
         <!--多名员工对应一个职务-->
         <many-to-one name="post"
                      lazy="false"
-                     class="com.lanou.HRD.domain.Post"
+                     class="com.lanou.hrd.domain.Post"
                      column="postID"
                      cascade="all"/>
-        <!---->
-        <many-to-one name="department"
-                     lazy="false"
-                     class="com.lanou.HRD.domain.Department"
-                     column="depId"
-                     cascade="all"/>
+
+
+
     </class>
 </hibernate-mapping>

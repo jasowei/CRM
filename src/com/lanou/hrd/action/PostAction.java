@@ -1,9 +1,9 @@
-package com.lanou.HRD.action;
+package com.lanou.hrd.action;
 
-import com.lanou.HRD.domain.Department;
-import com.lanou.HRD.domain.Post;
-import com.lanou.HRD.service.DepartmentService;
-import com.lanou.HRD.service.PostService;
+import com.lanou.hrd.domain.Department;
+import com.lanou.hrd.domain.Post;
+import com.lanou.hrd.service.DepartmentService;
+import com.lanou.hrd.service.PostService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +56,7 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>{
      */
     public String addOrEditPost(){
         Department department1 = departmentService.findById(deptId);
-        System.out.println("2222222 : "+deptId);
+        System.out.println("要编辑职务的部门id : "+deptId);
 
         if (post.getPostName().trim().equals("") || deptId.equals("-1")) {
             addActionError("请填写完整!");
@@ -66,8 +66,9 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>{
         }
         //如果有id,执行编辑
         if (!post.getPostId().equals("")){
-            Post post1 = new Post(post.getPostId(),post.getPostName(),department1);
-            postService.update(post1);
+            post.setDepartment(department1);
+            System.out.println("修改后职务"+post);
+            postService.update(post);
             return SUCCESS;
         }
 

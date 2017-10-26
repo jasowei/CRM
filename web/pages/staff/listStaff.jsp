@@ -1,3 +1,5 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -7,6 +9,43 @@
 <title>无标题文档</title>
 
 <link href="${pageContext.request.contextPath}/css/sys.css" type="text/css" rel="stylesheet" />
+	<script src="/js/jquery-3.2.1.js"></script>
+	<script type="text/javascript">
+		$(function () {
+
+			$.post(
+					"${pageContext.request.contextPath}/listDept.action",
+					function (data) {
+						var _html = "";
+						$.each(data, function (i, n) {
+							_html += '<option value=' + n.depID + ' >' + n.depName + '</option>';
+
+						});
+						$("#deptSelectId").append(_html);
+					},
+					'json'
+			);
+
+			$("#deptSelectId").change(function () {
+				$("#postSelectId").empty();
+				$("#postSelectId").append('<option value="-1">---请选择职务---</option>');
+				$.post(
+						"${pageContext.request.contextPath}/listPost.action",
+						{
+							departid: $("#deptSelectId").val()
+						},
+						function (data) {
+
+							$.each(data, function (i, n) {
+								$("#postSelectId").append('<option value=' + n.postId + '>' + n.postName + '</option>');
+							});
+						},
+						'json'
+				);
+			});
+		});
+	</script>
+
 </head>
 
 <body >
@@ -23,7 +62,7 @@
    
     <td width="57%"align="right">
     	<%--高级查询 --%>
-		<a href="javascript:void(0)" onclick="condition()"><img src="${pageContext.request.contextPath}/images/button/gaojichaxun.gif" /></a>
+		<a href="javascript:void(0)" onclick="document.forms[0].submit()"><img src="${pageContext.request.contextPath}/images/button/gaojichaxun.gif" /></a>
     	<%--员工注入 --%>
 	  	<a href="${pageContext.request.contextPath}/pages/staff/addStaff.jsp">
 	  		<img src="${pageContext.request.contextPath}/images/button/tianjia.gif" />
@@ -35,27 +74,22 @@
 </table>
 
 <!-- 查询条件：马上查询 -->
-<form id="conditionFormId" action="${pageContext.request.contextPath}/staff/staffAction_findAll" method="post">
+<form id="conditionFormId" action="${pageContext.request.contextPath}/queryStaff.action" method="post">
 	<table width="88%" border="0" style="margin: 20px;" >
 	  <tr>
 	    <td width="80px">部门：</td>
 	    <td width="200px">
 	    	
-	    	<select name="crmPost.crmDepartment.depId" onchange="changePost(this)">
-			    <option value="">--请选择部门--</option>
-			    <option value="ee050687bd1a4455a153d7bbb7000001">教学部</option>
-			    <option value="ee050687bd1a4455a153d7bbb7000002">咨询部</option>
+	    	<select  name="depId" id="deptSelectId" >
+			    <option value="-1">--请选择部门--</option>
 			</select>
 
 	    </td>
 	    <td width="80px" >职务：</td>
 	    <td width="200px" >
 	    	
-	    	<select name="crmPost.postId" id="postSelectId">
-			    <option value="">--请选择职务--</option>
-			    <option value="ee050687bd1a4455a153d7bbb7000003">总监</option>
-			    <option value="ee050687bd1a4455a153d7bbb7000004">讲师</option>
-			    <option value="ee050687bd1a4455a153d7bbb7000005">主管</option>
+	    	<select name="postID" id="postSelectId">
+			    <option value="-1">--请选择职务--</option>
 			</select>
 
 	    </td>
@@ -82,32 +116,21 @@
     <td width="10%" align="center">职务</td>
     <td width="10%" align="center">编辑</td>
   </tr>
-  
-    
-	  <tr class="tabtd1"> 
-	    <td align="center">管理员</td>
-	    <td align="center"></td>
-	    <td align="center"></td>
-	    <td align="center"></td>
-	    <td align="center"></td>
-	  	<td width="7%" align="center">
-	  		
-	  		<a href="${pageContext.request.contextPath}/pages/staff/editStaff.jsp"><img src="${pageContext.request.contextPath}/images/button/modify.gif" class="img" /></a>	
-	  	</td>
-	  	
-	  </tr>
-    
+
+    <c:forEach var="staff" items="${staffs}">
 	  <tr class="tabtd2"> 
-	    <td align="center">赵六</td>
-	    <td align="center">男</td>
-	    <td align="center">2012-02-12</td>
-	    <td align="center">咨询部</td>
-	    <td align="center">主管</td>
+	    <td align="center">${staff.staffName}</td>
+	    <td align="center">${staff.gender}</td>
+	    <td align="center">${staff.onDutyDate}</td>
+	    <td align="center">${staff.post.department.depName}</td>
+	    <td align="center">${staff.post.postName}</td>
 	  	<td width="7%" align="center">
 	  		
-	  		<a href="${pageContext.request.contextPath}/pages/staff/editStaff.jsp"><img src="${pageContext.request.contextPath}/images/button/modify.gif" class="img" /></a>	
+	  		<a href="${pageContext.request.contextPath}/editStaff.action?staffId=${staff.staffId}"><img src="${pageContext.request.contextPath}/images/button/modify.gif" class="img" /></a>
 	  	</td>
 	  </tr>
+	</c:forEach>>
+
 </table>
 
 

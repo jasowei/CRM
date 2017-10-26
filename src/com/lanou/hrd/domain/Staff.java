@@ -1,6 +1,7 @@
-package com.lanou.HRD.domain;
+package com.lanou.hrd.domain;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 /**
  * Created by dllo on 17/10/24.
@@ -15,6 +16,15 @@ public class Staff {
     private Department department;//所属部门
     private Post post;//所属职务
 
+    public Staff(String staffId, String loginName, String loginPwd, String staffName, String gender, Date onDutyDate, Post post) {
+        this.staffId = staffId;
+        this.loginName = loginName;
+        this.loginPwd = loginPwd;
+        this.staffName = staffName;
+        this.gender = gender;
+        this.onDutyDate = onDutyDate;
+        this.post = post;
+    }
 
     public Staff(String loginName, String loginPwd, String staffName, String gender, Date onDutyDate) {
         this.loginName = loginName;
@@ -60,8 +70,6 @@ public class Staff {
                 ", staffName='" + staffName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", onDutyDate=" + onDutyDate +
-                ", department=" + department +
-                ", post=" + post +
                 '}';
     }
 

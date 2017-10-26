@@ -1,10 +1,8 @@
-package com.lanou.HRD.dao.impl;
+package com.lanou.hrd.dao.impl;
 
-import com.lanou.HRD.dao.BaseDao;
+import com.lanou.hrd.dao.BaseDao;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import java.io.Serializable;
@@ -47,6 +45,12 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
     }
 
     @Override
+    public List<T> find(String hql, Object[] params) {
+        List<T> list = (List<T>) getHibernateTemplate().find(hql, params);
+        return list;
+    }
+
+    @Override
     public T findSingle(String hql, Map<String, Object> params) {
         List<T> tList = find(hql,params);
         if (tList.size()>0) {
@@ -75,7 +79,8 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 
     @Override
     public void update(T t) {
-        getHibernateTemplate().update(t);
+        Session session = currentSession();
+        session.merge(t);
     }
 
 }

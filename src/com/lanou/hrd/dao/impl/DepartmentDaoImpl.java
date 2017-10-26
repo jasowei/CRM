@@ -1,7 +1,7 @@
-package com.lanou.HRD.dao.impl;
+package com.lanou.hrd.dao.impl;
 
-import com.lanou.HRD.dao.DepartmentDao;
-import com.lanou.HRD.domain.Department;
+import com.lanou.hrd.dao.DepartmentDao;
+import com.lanou.hrd.domain.Department;
 
 /**
  * Created by dllo on 17/10/25.

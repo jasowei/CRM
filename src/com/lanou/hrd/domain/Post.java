@@ -1,4 +1,4 @@
-package com.lanou.HRD.domain;
+package com.lanou.hrd.domain;
 
 /**
  * Created by dllo on 17/10/24.
@@ -26,6 +26,11 @@ public class Post {
     public Post(String postId, String postName) {
         this.postId = postId;
         this.postName = postName;
+    }
+
+    public Post(String postName, Department department) {
+        this.postName = postName;
+        this.department = department;
     }
 
     @Override

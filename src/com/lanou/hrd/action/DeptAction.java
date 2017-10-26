@@ -1,7 +1,7 @@
-package com.lanou.HRD.action;
+package com.lanou.hrd.action;
 
-import com.lanou.HRD.domain.Department;
-import com.lanou.HRD.service.DepartmentService;
+import com.lanou.hrd.domain.Department;
+import com.lanou.hrd.service.DepartmentService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +40,8 @@ public class DeptAction extends ActionSupport implements ModelDriven<Department>
      * 添加/编辑 部门
      */
     public String addOrEditDepartment(){
-        System.out.println("表单 : "+department.getDepID());
-        if (department.getDepName().trim().equals("")
-                || departmentService.findSingle(department.getDepName()) != null){
+        System.out.println("表单 : "+department.getDepID()+">>>"+department);
+        if (department.getDepName().trim().equals("")){
             addActionError("请填写完整!");
             return INPUT;
         }
