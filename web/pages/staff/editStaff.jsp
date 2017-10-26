@@ -11,7 +11,7 @@
     <script src="/js/jquery-3.2.1.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("#postSelectId").click(function () {
+            $("#deptSelectId").change(function () {
                 $("#postSelectId").empty();
                 $("#postSelectId").append('<option value="-1">----请--选--择----</option>');
                 $.post(
@@ -107,6 +107,7 @@
                 <select name="postID" id="postSelectId">
                     <option value="-1">----请--选--择----</option>
                     <c:forEach var="dept" items="${departments}">
+                        <c:if test="${staff1.post.department.depID == dept.depID}">
                         <c:forEach var="post" items="${dept.posts}">
                         <option value="${post.postId}"
                                 <c:if test="${post.postId == staff1.post.postId}">
@@ -114,6 +115,7 @@
                                 </c:if>
                         >${post.postName}</option>
                         </c:forEach>
+                        </c:if>
                     </c:forEach>
                 </select>
             </td>
